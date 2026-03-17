@@ -1,0 +1,88 @@
+@font-face {
+    font-family: text;
+    src: url(./media/fonts/Minecraft.ttf);
+}
+
+/*Allgemein*/
+
+:root {
+    --baseGreen: #589527;
+    --baseBackgroundGradient: radial-gradient(circle, #41493D 0%, #30332F 100%);
+    --backgroundGradient: radial-gradient(circle, #2B2525 0%, #1A1818 100%);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--backgroundGradient);
+}
+
+/*-------
+Mainpage
+--------*/
+
+/*Header*/
+#header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--baseBackgroundGradient);
+}
+
+#logo {
+    width: 40%;
+}
+
+#nav {
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    text-align: center;
+    padding: 1%;
+    background-color: var(--baseGreen);
+    margin-bottom: 4%;
+}
+
+#nav>a {
+    color: white;
+    font-family: text;
+    letter-spacing: 1px;
+}
+
+/*Content*/
+
+#boxNav {
+    display: grid;
+    grid-template-columns: auto auto;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#boxNav>a>div {
+    background-color: var(--baseGreen);
+    border-radius: 10px;
+    padding: 13%;
+    min-width: 25vw;
+    min-height: 5vh;
+}
+
+#boxNav>a {
+    margin: 8%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    color: black;
+    font-size: 25px;
+    font-family: text;
+    letter-spacing: 1px;
+}
+
+/*Footer*/
+
+#footer {
+    background-color: var(--baseGreen);
+    text-align: center;
+    padding: 1%;
+    margin-top: 4%;
+}
