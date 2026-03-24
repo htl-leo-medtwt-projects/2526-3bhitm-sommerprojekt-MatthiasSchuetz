@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Create new User</h1>
+
+    <form method="POST" action="../server/register.php">
+        <label for="username">New username: </label>
+        <input name="username" type="text" required>
+        <label for="password">Password: </label>
+        <input name="password" type="password" required>
+        <label for="password2">Retype Password: </label>
+        <input name="password2" type="password" required><br>
+        <input type="submit" name="submit" value="Create new user">
+    </form>
+</body>
+</html>

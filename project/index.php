@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    if (isset($_SESSION['login'])) {
+        echo "You are already logged in.";
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
