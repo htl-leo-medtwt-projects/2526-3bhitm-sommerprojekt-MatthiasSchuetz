@@ -1,9 +1,5 @@
 <?php
     session_start();
-
-    if (isset($_SESSION['login'])) {
-        echo "You are already logged in.";
-    }
 ?>
 
 <!DOCTYPE html>
@@ -20,10 +16,16 @@
         <img id="logo" src="./media/img/logo.png" alt="Logo">
     </div>
     <div id="nav">
-        <a href="./pages/blockPalettes.html">Block Palettes</a>
-        <a href="./pages/buildHacks.html">Build Hacks</a>
-        <a href="./pages/forums.html">Forums</a>
-        <a href="./pages/login.html">Login</a>
+        <div><a href="./pages/blockPalettes.html">Block Palettes</a></div>
+        <div><a href="./pages/buildHacks.html">Build Hacks</a></div>
+        <div><a href="./pages/forums.html">Forums</a></div>
+        <?php
+            if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
+                echo '<div><a style="color: black;" href="./server/login.php">Logout</a></div>';
+            } else {
+                echo '<div><a href="./pages/login.html">Login</a></div>';
+            }
+        ?>
     </div>
 
     <div id="content">

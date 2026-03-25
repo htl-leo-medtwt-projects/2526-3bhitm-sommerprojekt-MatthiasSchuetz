@@ -4,18 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer></script>
 </head>
 <body>
-    <h1>Create new User</h1>
+    <div id="header">
+        <img id="logo" src="../media/img/logo.png" alt="Logo">
+    </div>
 
-    <form method="POST" action="../server/register.php">
-        <label for="username">New username: </label>
-        <input name="username" type="text" required>
-        <label for="password">Password: </label>
-        <input name="password" type="password" required>
-        <label for="password2">Retype Password: </label>
-        <input name="password2" type="password" required><br>
-        <input type="submit" name="submit" value="Create new user">
-    </form>
+    <div id="loginWrapper">
+        <h1>Create new User</h1>
+
+        <form method="POST" action="../server/register.php">
+            <label for="username">New username: </label>
+            <input name="username" type="text" required>
+            <label for="password">Password: </label>
+            <input name="password" type="password" required>
+            <label for="password2">Retype Password: </label>
+            <input name="password2" type="password" required><br>
+            <input type="submit" name="submit" value="Create new user">
+        </form>
+
+        <h2>Already have an account?</h2>
+        <p><a href="./login.html">Login here</a></p>
+    </div>
+    
 </body>
 </html>

@@ -17,6 +17,23 @@ body {
     background: var(--backgroundGradient);
 }
 
+h1 {
+    color: rgb(0, 0, 0);
+    font-family: text;
+    letter-spacing: 1px;
+}
+
+#loginWrapper {
+    background-color: var(--baseGreen);
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2%;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 8%;
+}
+
 /*-------
 Mainpage
 --------*/
@@ -44,7 +61,7 @@ Mainpage
     margin-bottom: 4%;
 }
 
-#nav>a {
+#nav>div>a {
     color: white;
     font-family: text;
     letter-spacing: 1px;
