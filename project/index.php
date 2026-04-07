@@ -26,6 +26,9 @@
                 echo '<div><a href="./pages/login.html">Login</a></div>';
             }
         ?>
+        <div id="user">
+            <img onclick="accountData()" src="./media/img/defaultUser.png" alt="User Icon" style="width: 40px; height: 40px; border-radius: 100%;">
+        </div>
     </div>
 
     <div id="content">
