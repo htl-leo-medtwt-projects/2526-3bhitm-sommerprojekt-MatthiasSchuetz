@@ -24,6 +24,10 @@ function loadSessionData() {
 
 loadSessionData();
 
+function goToMainpage() {
+    window.location.href = "./index.php";
+}
+
 function accountData() {
     userElement = document.getElementById("user");
 

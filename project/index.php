@@ -13,12 +13,12 @@
 </head>
 <body>
     <div id="header">
-        <img id="logo" src="./media/img/logo.png" alt="Logo">
+        <img style="cursor: pointer;" onclick="goToMainpage()" id="logo" src="./media/img/logo.png" alt="Logo">
     </div>
     <div id="nav">
-        <div><a href="./pages/blockPalettes.html">Block Palettes</a></div>
-        <div><a href="./pages/buildHacks.html">Build Hacks</a></div>
-        <div><a href="./pages/forums.html">Forums</a></div>
+        <div><a href="./blockPalettes.php">Block Palettes</a></div>
+        <div><a href="./buildHacks.php">Build Hacks</a></div>
+        <div><a href="./forums.php">Forums</a></div>
         <?php
             if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
                 echo '<div><a style="color: black;" href="./server/login.php">Logout</a></div>';
@@ -42,12 +42,16 @@
 
     <div id="content">
         <div id="welcome">
-            
+            <p>Welcome to MCBuildHelper, your ultimate resource for Minecraft building inspiration and tips! 
+                Whether you're a seasoned builder or just starting out, our website offers a wealth of information 
+                to help you create stunning structures in Minecraft. Explore our block palettes to find the 
+                perfect materials for your builds, discover build hacks to enhance your creativity, and join 
+                our forums to connect with fellow Minecraft build enthusiasts. Let's build something amazing together!</p>
         </div>
         <div id="boxNav">
-            <a href="./pages/blockPalettes.html"><div id="navBlockPalettes">Block Palettes</div></a>
-            <a href="./pages/buildHacks.html"><div id="navBuildHacks">Build Hacks</div></a>
-            <a href="./pages/forums.html"><div id="navForums">Forums</div></a>
+            <a href="./blockPalettes.php"><div id="navBlockPalettes">Block Palettes</div></a>
+            <a href="./buildHacks.php"><div id="navBuildHacks">Build Hacks</div></a>
+            <a href="./forums.php"><div id="navForums">Forums</div></a>
         </div>
     </div>
 
