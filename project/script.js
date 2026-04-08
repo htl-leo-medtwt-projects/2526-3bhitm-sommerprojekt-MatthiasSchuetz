@@ -11,9 +11,9 @@ function loadSessionData() {
         .then(data => {
             if (data.code === 200) {
                 username = data.data.user.username;
-                email = data.data.user.email;
+                email = data.data.user.email ?? "not set";
                 password = data.data.user.password;
-                profilePicture = data.data.user.profilePicture;
+                profilePicture = data.data.user.profilePicture ?? "./media/img/defaultUser.png";
                 console.log("Session data loaded:", {data});
             } else {
                 console.error("Failed to load session data:", data);
@@ -29,8 +29,11 @@ function accountData() {
 
     if (!accountDataOpen) {
         userElement.innerHTML += `<div id='accountData'>
+                                    <label>Username:</label><br>
                                     <input type='text' value='${username}' readonly><br>
+                                    <label>Email:</label><br>
                                     <input type='text' value='${email}' readonly><br>
+                                    <label>Password:</label><br>
                                     <input type='password' value='${password}' readonly><br>
                                  </div>`;
         accountDataOpen = true;
