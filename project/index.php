@@ -22,13 +22,17 @@
         <?php
             if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
                 echo '<div><a style="color: black;" href="./server/login.php">Logout</a></div>';
+                echo '<div id="user">
+                        <img onclick="accountData()" src="'. $_SESSION['user']['profilePicture']. '" alt="User Icon" style="width: 40px; height: 40px; border-radius: 100%;">
+                    </div>';
             } else {
                 echo '<div><a href="./pages/login.html">Login</a></div>';
+                echo '<div id="user">
+                        <img src="./media/img/defaultUser.png" alt="User Icon" style="width: 40px; height: 40px; border-radius: 100%;">
+                    </div>';
             }
         ?>
-        <div id="user">
-            <img onclick="accountData()" src="./media/img/defaultUser.png" alt="User Icon" style="width: 40px; height: 40px; border-radius: 100%;">
-        </div>
+        
     </div>
 
     <div id="content">
