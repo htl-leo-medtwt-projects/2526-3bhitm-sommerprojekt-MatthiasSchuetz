@@ -10,6 +10,7 @@
     <title>MCBuildHelper</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <script src="blockPalettesScript.js" defer></script>
 </head>
 <body>
     <div id="header">
@@ -45,7 +46,6 @@
             <p>Welcome to the Block Palettes page!</p>
         </div>
         <div id="palettes">
-            <img style="width: 160px;image-rendering: pixelated;" src="./server/media/blocks/stripped_crimson_stem_top.png" alt="Palette 1">
         </div>
     </div>
 

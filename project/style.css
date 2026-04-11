@@ -209,3 +209,32 @@ Login/Register
     background: var(--baseBackgroundGradient);
     top: -5vh;
 }
+
+/*----------------
+Block Palettes
+----------------*/
+
+#palettes {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.blockPalette {
+    width: 160px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blockPaletteBlocks {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 0px;
+    width: 160px;
+}
+
+.blockPaletteImage {
+    width: 80px;
+    height: 80px;
+    image-rendering: pixelated;
+}

@@ -3,6 +3,7 @@ let username;
 let email;
 let password;
 let profilePicture;
+let blocks = [];
 
 function loadSessionData() {
     console.log("Loading session data...");
@@ -53,16 +54,15 @@ function accountData() {
 
 function loadBlocksFromDB() {
     console.log("Loading blocks from database...");
-    fetch("./server/getBlocks.php")
+    return fetch("./server/getBlocks.php")
         .then(response => response.json())
         .then(data => {
             if (data.code === 200) {
                 console.log("Blocks loaded:", {data});
+                blocks = data.data;
             } else {
                 console.error("Failed to load blocks:", data);
             }
         })
         .catch(error => console.error("Error fetching blocks:", error));
 }
-
-loadBlocksFromDB();
