@@ -45,7 +45,7 @@
             <p>Welcome to the Block Palettes page!</p>
         </div>
         <div id="palettes">
-            <img style="width: 80px;" src="./server/media/blocks/stripped_crimson_stem_top.png" alt="Palette 1">
+            <img style="width: 160px;image-rendering: pixelated;" src="./server/media/blocks/stripped_crimson_stem_top.png" alt="Palette 1">
         </div>
     </div>
 

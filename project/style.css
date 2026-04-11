@@ -103,6 +103,13 @@ Mainpage
 
 /*Content*/
 
+#welcome {
+    text-align: center;
+    color: white;
+    font-family: text;
+    letter-spacing: 1px;
+}
+
 #boxNav {
     display: grid;
     grid-template-columns: auto auto;
