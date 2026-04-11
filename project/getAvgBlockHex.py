@@ -4,12 +4,11 @@ import os
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 input_folder = os.path.join(base_dir, "server/media/blocks")
-output_file = os.path.join(base_dir, "farben.txt") # Ausgabedatei
+output_file = os.path.join(base_dir, "farben.txt")
 
 def average_hex(image_path):
     img = Image.open(image_path).convert("RGB")
     
-    # Trick: auf 1x1 skalieren = Durchschnittsfarbe
     img = img.resize((1, 1), resample=Image.BOX)
     r, g, b = img.getpixel((0, 0))
     

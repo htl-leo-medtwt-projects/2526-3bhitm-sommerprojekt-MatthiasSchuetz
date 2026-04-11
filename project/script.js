@@ -28,6 +28,8 @@ function goToMainpage() {
     window.location.href = "./index.php";
 }
 
+
+
 function accountData() {
     userElement = document.getElementById("user");
 
@@ -46,3 +48,21 @@ function accountData() {
         accountDataOpen = false;
     }
 }
+
+
+
+function loadBlocksFromDB() {
+    console.log("Loading blocks from database...");
+    fetch("./server/getBlocks.php")
+        .then(response => response.json())
+        .then(data => {
+            if (data.code === 200) {
+                console.log("Blocks loaded:", {data});
+            } else {
+                console.error("Failed to load blocks:", data);
+            }
+        })
+        .catch(error => console.error("Error fetching blocks:", error));
+}
+
+loadBlocksFromDB();
