@@ -45,8 +45,9 @@
         <div id="welcome">
             <p>Welcome to the Block Palettes page!</p>
         </div>
-        <div id="palettes">
-        </div>
+        <div id="addPaletteButton" onclick="openClosePalettAdd()">Add Palette</div>
+        <div id="addPalette"></div>
+        <div id="palettes"></div>
     </div>
 
     <div id="footer">

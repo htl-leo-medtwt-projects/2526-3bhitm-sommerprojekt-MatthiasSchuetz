@@ -4,6 +4,7 @@ let email;
 let password;
 let profilePicture;
 let blocks = [];
+let creator = "";
 
 function loadSessionData() {
     console.log("Loading session data...");
@@ -65,4 +66,19 @@ function loadBlocksFromDB() {
             }
         })
         .catch(error => console.error("Error fetching blocks:", error));
+}
+
+function loadUserFromDB(userId) {
+    console.log("Loading user from database...");
+    return fetch("./server/getUser.php?id=" + userId)
+        .then(response => response.json())
+        .then(data => {
+            if (data.code === 200) {
+                console.log("User loaded:", {data});
+                creator = data.data.username;
+            } else {
+                console.error("Failed to load user:", data);
+            }
+        })
+        .catch(error => console.error("Error fetching user:", error));
 }
