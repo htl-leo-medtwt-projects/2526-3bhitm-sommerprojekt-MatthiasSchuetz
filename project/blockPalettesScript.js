@@ -25,11 +25,11 @@ async function generateBlockPalettes() {
         tempString += `<div class="blockPalette">
                         <div class="blockPaletteBlocks">
                             <img class="blockPaletteImage" src="${blocks[palette.block1-1].path}" alt="${palette.name}Block1">
-                            <img class="blockPaletteImage" src="${blocks[palette.block6-1].path}" alt="${palette.name}Block6">
                             <img class="blockPaletteImage" src="${blocks[palette.block2-1].path}" alt="${palette.name}Block2">
-                            <img class="blockPaletteImage" src="${blocks[palette.block5-1].path}" alt="${palette.name}Block5">
                             <img class="blockPaletteImage" src="${blocks[palette.block3-1].path}" alt="${palette.name}Block3">
                             <img class="blockPaletteImage" src="${blocks[palette.block4-1].path}" alt="${palette.name}Block4">
+                            <img class="blockPaletteImage" src="${blocks[palette.block5-1].path}" alt="${palette.name}Block5">
+                            <img class="blockPaletteImage" src="${blocks[palette.block6-1].path}" alt="${palette.name}Block6">
                         </div>
                         <h2>${palette.name}</h2>
                         <h2>${creator}</h2>

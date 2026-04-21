@@ -124,6 +124,7 @@ Mainpage
     padding: 13%;
     min-width: 25vw;
     min-height: 5vh;
+    border: solid 2px black;
 }
 
 #boxNav>a {
@@ -134,6 +135,12 @@ Mainpage
     font-size: 25px;
     font-family: text;
     letter-spacing: 1px;
+    transition: 0.2s;
+}
+
+#boxNav>a:hover {
+    scale: 1.07;
+    color: white;
 }
 
 /*Footer*/
@@ -239,6 +246,30 @@ Block Palettes
     image-rendering: pixelated;
 }
 
+/*Add Palette*/
+
+#addPaletteButton {
+    background: var(--baseGreen);
+    border: solid 2px black;
+    border-radius: 10px;
+    color: white;
+    font-family: text;
+    letter-spacing: 1px;
+    cursor: pointer;
+    width: 160px;
+    text-align: center;
+    padding: 1%;
+    transition: 0.3s;
+    position: fixed;
+    left: 43.67%;
+    bottom: 5%;
+}
+
+#addPaletteButton:hover {
+    scale: 1.1;
+    color: black;
+}
+
 #addPalette {
     display: none;
     grid-template-columns: 50% 50%;
@@ -276,4 +307,69 @@ Block Palettes
 .blockPalettePreviewImageContainer {
     width: 120px;
     height: 120px;
+}
+
+#addPaletteInputs {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-gap: 5px;  
+    width: 100%;
+}
+
+#addPaletteInputs>h2 {
+    color: white;
+    font-family: text;
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+#addPaletteInputs>input {
+    padding: 5px;
+    border-radius: 5px;
+    font-family: text;
+    background: var(--baseBackgroundGradient);
+    color: black;
+    transition: 0.2s;
+}
+
+#addPaletteInputs>input:hover {
+    scale: 1.1;
+}
+
+#addPaletteInputs>select {
+    padding: 5px;
+    border-radius: 5px;
+    font-family: text;
+    background: var(--baseBackgroundGradient);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#addPaletteInputs>select:hover {
+    scale: 1.08;
+}
+
+#addPaletteInputs>select>option {
+    padding: 5px;
+    border-radius: 5px;
+    font-family: text;
+    background-color: #41493D;
+}
+
+#addPaletteInputs>button {
+    background: var(--baseGreen);
+    border: solid 2px black;
+    border-radius: 10px;
+    color: white;
+    font-family: text;
+    letter-spacing: 1px;
+    cursor: pointer;
+    width: 100%;
+    padding: 5px;
+    transition: 0.2s;
+}
+
+#addPaletteInputs>button:hover {
+    scale: 1.1;
+    color: black;
 }
