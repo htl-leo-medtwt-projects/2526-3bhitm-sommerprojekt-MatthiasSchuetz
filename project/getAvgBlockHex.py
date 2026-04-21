@@ -22,4 +22,4 @@ with open(output_file, "w") as f:
             
             f.write(f"{file}     {hex_color}\n")
 
-print("Fertig! Datei gespeichert als", output_file)
+print("Datei gespeichert: ", output_file)
