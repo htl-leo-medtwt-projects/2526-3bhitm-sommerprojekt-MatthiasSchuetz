@@ -52,7 +52,7 @@ function openClosePalettAdd() {
         let tempString = "<div id='addPaletteInputs'>";
         for (let i = 0; i < 6; i++) {
             tempString += `<h2>Block ${i+1}</h2>
-                            <select id="block${i+1}">
+                            <select onchange="updateBlockPreview(${i+1})" id="block${i+1}">
                                 <option value="" disabled selected>Select a block</option>`;
             for (let block of blocks) {
                 tempString += `<option value="${block.id}">${block.name}</option>`;
@@ -63,11 +63,28 @@ function openClosePalettAdd() {
         tempString += `<button onclick="addPalette()">Add Palette</button>`;
         tempString += "</div>";
         document.getElementById("addPalette").innerHTML = tempString;
+        document.getElementById("addPalette").innerHTML += `<div id="palettePreviewContainer">
+                                                                <div id="palettePreview">
+                                                                    <div class="blockPalettePreviewImageContainer"><img class="blockPalettePreviewImage" src="${blocks[486].path}" alt="PreviewImg"></div>
+                                                                    <div class="blockPalettePreviewImageContainer"><img class="blockPalettePreviewImage" src="${blocks[486].path}" alt="PreviewImg"></div>
+                                                                    <div class="blockPalettePreviewImageContainer"><img class="blockPalettePreviewImage" src="${blocks[486].path}" alt="PreviewImg"></div>
+                                                                    <div class="blockPalettePreviewImageContainer"><img class="blockPalettePreviewImage" src="${blocks[486].path}" alt="PreviewImg"></div>
+                                                                    <div class="blockPalettePreviewImageContainer"><img class="blockPalettePreviewImage" src="${blocks[486].path}" alt="PreviewImg"></div>
+                                                                    <div class="blockPalettePreviewImageContainer"><img class="blockPalettePreviewImage" src="${blocks[486].path}" alt="PreviewImg"></div>
+                                                                </div>
+                                                            </div>`;
         addPaletteOpen = true;
+        document.getElementById("addPalette").style.display = "grid";
     } else {
         document.getElementById("addPalette").innerHTML = "";
         addPaletteOpen = false;
+        document.getElementById("addPalette").style.display = "none";
     }
+}
+
+function updateBlockPreview(index) {
+    let block = document.getElementById(`block${index}`).value;
+    document.getElementsByClassName("blockPalettePreviewImageContainer")[index-1].innerHTML = `<img class="blockPalettePreviewImage" src="${blocks[block-1].path}" alt="${blocks[block-1].name}">`;
 }
 
 function addPalette() {
@@ -98,7 +115,7 @@ function addPalette() {
             block4,
             block5,
             block6,
-            username: username,
+            userID: userID,
             name: paletteName
     })
     })

@@ -1,5 +1,6 @@
 let accountDataOpen = false;
 let username;
+let userID;
 let email;
 let password;
 let profilePicture;
@@ -13,6 +14,7 @@ function loadSessionData() {
         .then(data => {
             if (data.code === 200) {
                 username = data.data.user.username;
+                userID = data.data.user.id;
                 email = data.data.user.email ?? "not set";
                 password = data.data.user.password;
                 profilePicture = data.data.user.profilePicture ?? "./media/img/defaultUser.png";

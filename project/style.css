@@ -238,3 +238,42 @@ Block Palettes
     height: 80px;
     image-rendering: pixelated;
 }
+
+#addPalette {
+    display: none;
+    grid-template-columns: 50% 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 10px;
+    padding: 3%;
+    background: var(--baseBackgroundGradient);
+}
+
+#palettePreviewContainer {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#palettePreview {
+    display: grid;
+    grid-template-columns: 120px 120px;
+    grid-template-rows: 120px 120px 120px;
+    grid-gap: 0px;
+    position: relative;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
+
+.blockPalettePreviewImageContainer>img {
+    width: 120px;
+    height: 120px;
+    image-rendering: pixelated;
+}
+
+.blockPalettePreviewImageContainer {
+    width: 120px;
+    height: 120px;
+}
