@@ -248,6 +248,21 @@ Block Palettes
 
 /*Add Palette*/
 
+#closeAddPalette {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-family: text;
+    cursor: pointer;
+    font-size: 25px;
+    transition: 0.2s;
+}
+
+#closeAddPalette:hover {
+    color: white;
+    scale: 1.2;
+}
+
 #addPaletteButton {
     background: var(--baseGreen);
     border: solid 2px black;
@@ -272,7 +287,7 @@ Block Palettes
 
 #addPalette {
     display: none;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 50% 40% 10%;
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
@@ -372,4 +387,31 @@ Block Palettes
 #addPaletteInputs>button:hover {
     scale: 1.1;
     color: black;
+}
+
+#changePaletteAddModeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#changePaletteAddModeContainer>select {
+    padding: 5px;
+    border-radius: 5px;
+    font-family: text;
+    background: var(--baseBackgroundGradient);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#changePaletteAddModeContainer>select:hover {
+    scale: 1.08;
+}
+
+#changePaletteAddModeContainer>select>option {
+    padding: 5px;
+    border-radius: 5px;
+    font-family: text;
+    background-color: #41493D;
 }

@@ -42,27 +42,41 @@ generateBlockPalettes();
 
 
 let addPaletteOpen = false;
-function openClosePalettAdd() {
+let mode = "custom";
+function openClosePalettAdd(changeMode = false) {
     if (!username) {
         alert("You need to be logged in to add a block palette!");
         return;
     }
 
-    if (!addPaletteOpen) {
-        let tempString = "<div id='addPaletteInputs'>";
-        for (let i = 0; i < 6; i++) {
-            tempString += `<h2>Block ${i+1}</h2>
-                            <select onchange="updateBlockPreview(${i+1})" id="block${i+1}">
-                                <option value="" disabled selected>Select a block</option>`;
-            for (let block of blocks) {
-                tempString += `<option value="${block.id}">${block.name}</option>`;
-            }
-            tempString += `</select>`;
+    if (!addPaletteOpen || changeMode) {
+        if (addPaletteOpen && changeMode) {
+            mode = document.getElementById("changePaletteAddMode").value;
+        } else {
+            mode = "custom";
         }
-        tempString += `<input type="text" id="paletteName" placeholder="Palette Name">`;
-        tempString += `<button onclick="addPalette()">Add Palette</button>`;
-        tempString += "</div>";
-        document.getElementById("addPalette").innerHTML = tempString;
+
+        document.getElementById("addPalette").innerHTML = "<div id='closeAddPalette' onclick='openClosePalettAdd()'>X</div>";
+
+        if (mode == "automatic") {
+            document.getElementById("addPalette").innerHTML += 'Automatic mode is currently not available, please use custom mode to add a block palette!';
+        } else {
+            let tempString = "<div id='addPaletteInputs'>";
+            for (let i = 0; i < 6; i++) {
+                tempString += `<h2>Block ${i+1}</h2>
+                                <select onchange="updateBlockPreview(${i+1})" id="block${i+1}">
+                                    <option value="" disabled selected>Select a block</option>`;
+                for (let block of blocks) {
+                    tempString += `<option value="${block.id}">${block.name}</option>`;
+                }
+                tempString += `</select>`;
+            }
+            tempString += `<input type="text" id="paletteName" placeholder="Palette Name">`;
+            tempString += `<button onclick="addPalette()">Add Palette</button>`;
+            tempString += "</div>";
+            document.getElementById("addPalette").innerHTML += tempString;
+        }        
+        
         document.getElementById("addPalette").innerHTML += `<div id="palettePreviewContainer">
                                                                 <div id="palettePreview">
                                                                     <div class="blockPalettePreviewImageContainer"><img class="blockPalettePreviewImage" src="${blocks[486].path}" alt="PreviewImg"></div>
@@ -73,6 +87,22 @@ function openClosePalettAdd() {
                                                                     <div class="blockPalettePreviewImageContainer"><img class="blockPalettePreviewImage" src="${blocks[486].path}" alt="PreviewImg"></div>
                                                                 </div>
                                                             </div>`;
+
+        document.getElementById("addPalette").innerHTML += `<div id="changePaletteAddModeContainer">
+                                                                <h2>Add Mode:</h2>
+                                                                <select id="changePaletteAddMode" onchange="openClosePalettAdd(true)">
+                                                                    <option value="custom" selected>Custom</option>
+                                                                    <option value="automatic">Automatic</option>
+                                                                </select>
+                                                            </div>`;
+
+        if (mode == "automatic") {
+            document.getElementById("changePaletteAddMode").value = "automatic";
+        } else {
+            document.getElementById("changePaletteAddMode").value = "custom";
+        }
+        
+        
         addPaletteOpen = true;
         document.getElementById("addPalette").style.display = "grid";
     } else {
