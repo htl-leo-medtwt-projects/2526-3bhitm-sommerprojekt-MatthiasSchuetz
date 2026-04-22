@@ -1,4 +1,11 @@
 let palettes = [];
+let distances = [];
+let block1;
+let block2;
+let block3;
+let block4;
+let block5;
+let block6;
 
 function loadBlockPalettesFromDB() {
     console.log("Loading block palettes from database...");
@@ -59,7 +66,12 @@ function openClosePalettAdd(changeMode = false) {
         document.getElementById("addPalette").innerHTML = "<div id='closeAddPalette' onclick='openClosePalettAdd()'>X</div>";
 
         if (mode == "automatic") {
-            document.getElementById("addPalette").innerHTML += 'Automatic mode is currently not available, please use custom mode to add a block palette!';
+            let tempString = "<div id='addPaletteColorModeContainer'>";
+            tempString += `<input type="color" id="paletteColorPicker" onchange="generateAutomaticPalette()">`;
+            tempString += `<input type="text" id="paletteName" placeholder="Palette Name">`;
+            tempString += `<button onclick="addPalette()">Add Palette</button>`;
+            tempString += "</div>";
+            document.getElementById("addPalette").innerHTML += tempString;
         } else {
             let tempString = "<div id='addPaletteInputs'>";
             for (let i = 0; i < 6; i++) {
@@ -102,7 +114,7 @@ function openClosePalettAdd(changeMode = false) {
             document.getElementById("changePaletteAddMode").value = "custom";
         }
         
-        
+
         addPaletteOpen = true;
         document.getElementById("addPalette").style.display = "grid";
     } else {
@@ -113,18 +125,80 @@ function openClosePalettAdd(changeMode = false) {
 }
 
 function updateBlockPreview(index) {
-    let block = document.getElementById(`block${index}`).value;
-    document.getElementsByClassName("blockPalettePreviewImageContainer")[index-1].innerHTML = `<img class="blockPalettePreviewImage" src="${blocks[block-1].path}" alt="${blocks[block-1].name}">`;
+    if (mode == "custom") {
+        let block = document.getElementById(`block${index}`).value;
+        document.getElementsByClassName("blockPalettePreviewImageContainer")[index-1].innerHTML = `<img class="blockPalettePreviewImage" src="${blocks[block-1].path}" alt="${blocks[block-1].name}">`;
+    } else if (mode == "automatic") {
+        let block = distances[index-1].block.id;
+        document.getElementsByClassName("blockPalettePreviewImageContainer")[index-1].innerHTML = `<img class="blockPalettePreviewImage" src="${blocks[block-1].path}" alt="${blocks[block-1].name}">`;
+    }
+}
+
+
+function generateAutomaticPalette() {
+    let hex = document.getElementById("paletteColorPicker").value.substring(1);
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+
+    for (let block of blocks) {
+        let blockColor = block.avgColorHex.replace('#', '');
+
+        // ChatGPT
+        let bigint = parseInt(blockColor, 16);
+        let blockR = (bigint >> 16) & 255;
+        let blockG = (bigint >> 8) & 255;
+        let blockB = bigint & 255;
+        // Ende ChatGPT
+        let dist = colorDistance(r, g, b, blockR, blockG, blockB);
+
+        distances.push({
+            block: block,
+            distance: dist
+        });
+    }
+
+    // Nach Distanz sortieren (kleinste zuerst)
+    distances.sort((a, b) => a.distance - b.distance);
+
+    // Die 6 nächsten nehmen
+    let closest = distances.slice(0, 6);
+
+    console.log("Nächste 6 Blöcke:", closest);
+
+    for (let i = 0; i < closest.length; i++) {
+        updateBlockPreview(i+1);
+    }
+    block1 = closest[0].block.id;
+    block2 = closest[1].block.id;
+    block3 = closest[2].block.id;
+    block4 = closest[3].block.id;
+    block5 = closest[4].block.id;
+    block6 = closest[5].block.id;
+
+    distances = [];
+}
+
+function colorDistance(r1, g1, b1, r2, g2, b2) {
+    return Math.sqrt(
+        (r1 - r2) ** 2 +
+        (g1 - g2) ** 2 +
+        (b1 - b2) ** 2
+    );
 }
 
 function addPalette() {
-    let block1 = document.getElementById("block1").value;
-    let block2 = document.getElementById("block2").value;
-    let block3 = document.getElementById("block3").value;
-    let block4 = document.getElementById("block4").value;
-    let block5 = document.getElementById("block5").value;
-    let block6 = document.getElementById("block6").value;
+    if (mode == "custom") {
+        block1 = document.getElementById("block1").value;
+        block2 = document.getElementById("block2").value;
+        block3 = document.getElementById("block3").value;
+        block4 = document.getElementById("block4").value;
+        block5 = document.getElementById("block5").value;
+        block6 = document.getElementById("block6").value;
+    }
+
     let paletteName = document.getElementById("paletteName").value;
+    
 
     if (!block1 || !block2 || !block3 || !block4 || !block5 || !block6 || !paletteName) {
         alert("Please fill in all fields!");
