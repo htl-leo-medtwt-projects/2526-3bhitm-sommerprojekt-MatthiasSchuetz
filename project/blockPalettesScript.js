@@ -30,14 +30,15 @@ async function generateBlockPalettes() {
     for (let palette of palettes) {
         await loadUserFromDB(palette.creator);
         tempString += `<div class="blockPalette">
-                        <div class="blockPaletteBlocks">
-                            <img class="blockPaletteImage" src="${blocks[palette.block1-1].path}" alt="${palette.name}Block1">
-                            <img class="blockPaletteImage" src="${blocks[palette.block2-1].path}" alt="${palette.name}Block2">
-                            <img class="blockPaletteImage" src="${blocks[palette.block3-1].path}" alt="${palette.name}Block3">
-                            <img class="blockPaletteImage" src="${blocks[palette.block4-1].path}" alt="${palette.name}Block4">
-                            <img class="blockPaletteImage" src="${blocks[palette.block5-1].path}" alt="${palette.name}Block5">
-                            <img class="blockPaletteImage" src="${blocks[palette.block6-1].path}" alt="${palette.name}Block6">
-                        </div>
+                        <div class="blockPaletteBlocks">`;
+        for (let j = 1; j <= 6; j++) {
+            for (let i = 0; i < blocks.length; i++) {
+                if (blocks[i].id == palette[`block${j}`]) {
+                    tempString += `<img class="blockPaletteImage" src="${blocks[i].path}" alt="${palette.name}Block${j}">`;
+                }
+            }
+        }
+        tempString += `</div>
                         <h2>${palette.name}</h2>
                         <h2>${creator}</h2>
                     </div>`;
@@ -89,16 +90,21 @@ function openClosePalettAdd(changeMode = false) {
             document.getElementById("addPalette").innerHTML += tempString;
         }        
         
-        document.getElementById("addPalette").innerHTML += `<div id="palettePreviewContainer">
-                                                                <div id="palettePreview">
-                                                                    <div class="blockPalettePreviewImageContainer"><img class="blockPalettePreviewImage" src="${blocks[486].path}" alt="PreviewImg"></div>
-                                                                    <div class="blockPalettePreviewImageContainer"><img class="blockPalettePreviewImage" src="${blocks[486].path}" alt="PreviewImg"></div>
-                                                                    <div class="blockPalettePreviewImageContainer"><img class="blockPalettePreviewImage" src="${blocks[486].path}" alt="PreviewImg"></div>
-                                                                    <div class="blockPalettePreviewImageContainer"><img class="blockPalettePreviewImage" src="${blocks[486].path}" alt="PreviewImg"></div>
-                                                                    <div class="blockPalettePreviewImageContainer"><img class="blockPalettePreviewImage" src="${blocks[486].path}" alt="PreviewImg"></div>
-                                                                    <div class="blockPalettePreviewImageContainer"><img class="blockPalettePreviewImage" src="${blocks[486].path}" alt="PreviewImg"></div>
-                                                                </div>
-                                                            </div>`;
+                                                                    
+        tempString = '<div id="palettePreviewContainer"><div id="palettePreview">';
+
+        for (let j = 1; j <= 6; j++) {
+            for (let i = 0; i < blocks.length; i++) {
+                if (blocks[i].id == 487) {
+                    tempString += `<div class="blockPalettePreviewImageContainer"><img class="blockPalettePreviewImage" src="${blocks[i].path}" alt="PreviewImg"></div>`;
+                }
+            }
+        }
+
+        tempString += `</div>
+                    </div>`;
+        document.getElementById("addPalette").innerHTML += tempString;
+
 
         document.getElementById("addPalette").innerHTML += `<div id="changePaletteAddModeContainer">
                                                                 <h2>Add Mode:</h2>
@@ -125,12 +131,17 @@ function openClosePalettAdd(changeMode = false) {
 }
 
 function updateBlockPreview(index) {
+    let block = 487;
     if (mode == "custom") {
-        let block = document.getElementById(`block${index}`).value;
-        document.getElementsByClassName("blockPalettePreviewImageContainer")[index-1].innerHTML = `<img class="blockPalettePreviewImage" src="${blocks[block-1].path}" alt="${blocks[block-1].name}">`;
+        block = document.getElementById(`block${index}`).value;
     } else if (mode == "automatic") {
-        let block = distances[index-1].block.id;
-        document.getElementsByClassName("blockPalettePreviewImageContainer")[index-1].innerHTML = `<img class="blockPalettePreviewImage" src="${blocks[block-1].path}" alt="${blocks[block-1].name}">`;
+        block = distances[index-1].block.id;
+    }
+
+    for (let i = 0; i < blocks.length; i++) {
+        if (blocks[i].id == block) {
+            document.getElementsByClassName("blockPalettePreviewImageContainer")[index-1].innerHTML = `<img class="blockPalettePreviewImage" src="${blocks[i].path}" alt="${blocks[i].name}">`;
+        }
     }
 }
 
@@ -158,17 +169,17 @@ function generateAutomaticPalette() {
         });
     }
 
-    // Nach Distanz sortieren (kleinste zuerst)
+    // Nach Distanz sortieren
     distances.sort((a, b) => a.distance - b.distance);
 
-    // Die 6 nächsten nehmen
+    // Die 6 nächsten
     let closest = distances.slice(0, 6);
-
     console.log("Nächste 6 Blöcke:", closest);
 
     for (let i = 0; i < closest.length; i++) {
         updateBlockPreview(i+1);
     }
+    
     block1 = closest[0].block.id;
     block2 = closest[1].block.id;
     block3 = closest[2].block.id;
