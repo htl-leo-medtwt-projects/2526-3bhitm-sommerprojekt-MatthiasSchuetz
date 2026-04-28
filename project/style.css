@@ -15,6 +15,7 @@ body {
     margin: 0;
     padding: 0;
     background: var(--backgroundGradient);
+    overflow-x: hidden;
 }
 
 h1 {
@@ -221,9 +222,22 @@ Login/Register
 Block Palettes
 ----------------*/
 
+#blockInfo {
+  display: none;
+  position: absolute;
+  background: var(--baseBackgroundGradient);
+  font-family: text;
+  color: white;
+  border: solid 1px black;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  z-index: 1000;
+}
+
 #palettes {
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
 .blockPalette {
@@ -231,6 +245,18 @@ Block Palettes
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10%;
+    padding: 5%;
+    padding-bottom: 0px;
+    border: solid 2px black;
+    border-radius: 10px;
+    background: var(--baseBackgroundGradient);
+}
+
+.blockPalette>p {
+    color: white;
+    font-family: text;
+    letter-spacing: 1px;
 }
 
 .blockPaletteBlocks {
@@ -288,7 +314,7 @@ Block Palettes
 #addPalette {
     display: none;
     grid-template-columns: 50% 40% 10%;
-    position: absolute;
+    position: fixed;
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;

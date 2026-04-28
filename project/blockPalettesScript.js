@@ -34,13 +34,13 @@ async function generateBlockPalettes() {
         for (let j = 1; j <= 6; j++) {
             for (let i = 0; i < blocks.length; i++) {
                 if (blocks[i].id == palette[`block${j}`]) {
-                    tempString += `<img class="blockPaletteImage" src="${blocks[i].path}" alt="${palette.name}Block${j}">`;
+                    tempString += `<img class="blockPaletteImage" onmousemove='(showBlockName(this))' onmouseout='(showBlockName(null))' src="${blocks[i].path}" alt="${blocks[i].name}">`;
                 }
             }
         }
         tempString += `</div>
-                        <h2>${palette.name}</h2>
-                        <h2>${creator}</h2>
+                        <p>${palette.name}</p>
+                        <p>${creator}</p>
                     </div>`;
     }
 
@@ -179,7 +179,7 @@ function generateAutomaticPalette() {
     for (let i = 0; i < closest.length; i++) {
         updateBlockPreview(i+1);
     }
-    
+
     block1 = closest[0].block.id;
     block2 = closest[1].block.id;
     block3 = closest[2].block.id;
@@ -245,4 +245,18 @@ function addPalette() {
             }
         })
         .catch(error => console.error("Error adding block palette:", error));
+}
+
+function showBlockName(block) {
+    let infoBox = document.getElementById("blockInfo");
+
+    if (!block) {
+        infoBox.style.display = "none";
+        return;
+    }
+    
+    infoBox.style.display = "block";
+    infoBox.style.left = `${window.event.pageX + 10}px`;
+    infoBox.style.top = `${window.event.pageY + 10}px`;
+    infoBox.innerText = block.alt;
 }

@@ -48,6 +48,7 @@
         <div id="addPaletteButton" onclick="openClosePalettAdd()">Add Palette</div>
         <div id="addPalette"></div>
         <div id="palettes"></div>
+        <div id="blockInfo"></div>
     </div>
 
     <div id="footer">
