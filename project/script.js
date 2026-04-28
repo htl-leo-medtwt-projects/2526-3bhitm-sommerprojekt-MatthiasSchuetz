@@ -45,12 +45,17 @@ function accountData() {
                                     <input type='text' value='${email}' readonly><br>
                                     <label>Password:</label><br>
                                     <input type='password' value='${password}' readonly><br>
+                                    <div id='editProfile' onclick='editProfile()'>Edit Profile</div>
                                  </div>`;
         accountDataOpen = true;
     } else {
         userElement.innerHTML = `<img onclick="accountData()" src='${profilePicture}' alt='User Icon' style='width: 40px; height: 40px; border-radius: 100%;'>`;
         accountDataOpen = false;
     }
+}
+
+function editProfile() {
+    window.location.href = "./editProfile.php";
 }
 
 

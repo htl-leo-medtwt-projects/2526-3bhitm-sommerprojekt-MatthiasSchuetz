@@ -41,16 +41,18 @@
 
     <div id="content">
         <div id="welcome">
-            <p>Welcome to MCBuildHelper, your ultimate resource for Minecraft building inspiration and tips! 
-                Whether you're a seasoned builder or just starting out, our website offers a wealth of information 
-                to help you create stunning structures in Minecraft. Explore our block palettes to find the 
-                perfect materials for your builds, discover build hacks to enhance your creativity, and join 
-                our forums to connect with fellow Minecraft build enthusiasts. Let's build something amazing together!</p>
+            <p>Edit Your Profile</p>
         </div>
-        <div id="boxNav">
-            <a href="./blockPalettes.php"><div id="navBlockPalettes">Block Palettes</div></a>
-            <a href="./buildHacks.php"><div id="navBuildHacks">Build Hacks</div></a>
-            <a href="./forums.php"><div id="navForums">Forums</div></a>
+        <div>
+            <form action="./server/editProfileOnDB.php" method="POST" enctype="multipart/form-data">
+                <label for="profilePicture">Profile Picture:</label><br>
+                <input type="file" id="profilePicture" name="profilePicture"><br><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email"><br><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password"><br><br>
+                <input type="submit" value="Save Changes" name="submit">
+            </form>
         </div>
     </div>
 
