@@ -23,7 +23,6 @@
             $check = getimagesize($_FILES["profilePicture"]["tmp_name"]);
 
             if ($check != false) {
-                echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
             } else {
                 echo "File is not an image.";
@@ -58,9 +57,28 @@
         if ($uploadOk == 0) {
             echo "Sorry, your file was not uploaded.";
         } else {
-            if (move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $target_file)) {
-                echo "The file " . basename($_FILES["profilePicture"]["name"]) . " has been uploaded.";
+            move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $target_file);
+
+            // In Datenbank speichern
+            $insertStatement = "UPDATE user SET profilePicture = './server/media/profilePictures/$rndFileName.$imageFileType' WHERE id = '".$_SESSION['user']['id']."'";
+
+            if ($rs = $conn->query($insertStatement)) {
+                $_SESSION['user']['profilePicture'] = "./server/media/profilePictures/$rndFileName.$imageFileType";
+            } else {
+                echo "<br>No insertion into database";
             }
         }
     }
+
+    if (isset($_POST["email"])) {
+
+    }
+
+    if (isset($_POST["password"])) {
+
+    }
+
+    $conn->close();
+
+    header("Location: ../editProfile.php");
 ?>
