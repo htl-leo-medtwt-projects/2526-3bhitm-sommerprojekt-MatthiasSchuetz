@@ -47,8 +47,10 @@
             <form action="./server/editProfileOnDB.php" method="POST" enctype="multipart/form-data">
                 <label for="profilePicture">Profile Picture:</label><br>
                 <input type="file" id="profilePicture" name="profilePicture"><br><br>
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username" value="<?php echo $_SESSION['user']['username']; ?>"><br><br>
                 <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email"><br><br>
+                <input type="email" id="email" name="email" value="<?php echo $_SESSION['user']['email']; ?>"><br><br>
                 <label for="password">Password:</label><br>
                 <input type="password" id="password" name="password"><br><br>
                 <input type="submit" value="Save Changes" name="submit">

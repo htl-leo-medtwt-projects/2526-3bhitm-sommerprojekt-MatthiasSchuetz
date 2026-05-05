@@ -7,6 +7,17 @@
         exit;
     }
 
+    if (isset($_POST["username"]) && !empty($_POST["username"])) {
+        $username = $_POST["username"];
+        $insertStatement = "UPDATE user SET username = '$username' WHERE id = '".$_SESSION['user']['id']."'";
+
+        if ($rs = $conn->query($insertStatement)) {
+            $_SESSION['user']['username'] = $username;
+        } else {
+            echo "<br>No insertion into database";
+        }
+    }
+
     if (isset($_FILES["profilePicture"]) && $_FILES["profilePicture"]["error"] == 0) {
         $target_dir = "./media/profilePictures/";
         $target_file = $target_dir . basename($_FILES["profilePicture"]["name"]);
