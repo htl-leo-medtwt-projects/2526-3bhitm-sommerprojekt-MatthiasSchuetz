@@ -487,3 +487,74 @@ Block Palettes
     height: 100%;
     padding: 0;
 }
+
+
+/*----------------
+Edit Profile
+----------------*/
+#editProfileBox {
+    background: var(--baseBackgroundGradient);
+    border: solid 2px black;
+    border-radius: 10px;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2%;
+    text-align: center;
+}
+
+#editProfileBox>form>label {
+    color: white;
+    font-family: text;
+    letter-spacing: 1px;
+}
+
+#editProfileBox>form>input {
+    padding: 5px;
+    border-radius: 5px;
+    font-family: text;
+    background: var(--baseBackgroundGradient);
+    color: black;
+    border: solid 2px black;
+    padding: 1%;
+    margin: 1%;
+    transition: 0.2s;
+}
+
+#editProfileBox>form>input:hover {
+    scale: 1.08;
+}
+
+#editProfileBox>form>input[type="submit"] {
+    background: var(--baseGreen);
+    border: solid 2px black;
+    border-radius: 10px;
+    color: white;
+    font-family: text;
+    letter-spacing: 1px;
+    cursor: pointer;
+    padding: 2%;
+    transition: 0.2s;
+}
+
+#editProfileBox>form>input[type="submit"]:hover {
+    scale: 1.13;
+    color: black;
+}
+
+#editProfileBox>form>input[type="button"] {
+    background: var(--baseGreen);
+    border: solid 2px black;
+    border-radius: 10px;
+    color: white;
+    font-family: text;
+    letter-spacing: 1px;
+    cursor: pointer;
+    padding: 2%;
+    transition: 0.2s;
+}
+
+#editProfileBox>form>input[type="button"]:hover {
+    scale: 1.13;
+    color: black;
+}

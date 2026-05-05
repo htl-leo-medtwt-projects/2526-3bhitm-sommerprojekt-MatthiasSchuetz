@@ -43,7 +43,7 @@
         <div id="welcome">
             <p>Edit Your Profile</p>
         </div>
-        <div>
+        <div id="editProfileBox">
             <form action="./server/editProfileOnDB.php" method="POST" enctype="multipart/form-data">
                 <label for="profilePicture">Profile Picture:</label><br>
                 <input type="file" id="profilePicture" name="profilePicture"><br><br>
@@ -54,6 +54,7 @@
                 <label for="password">Password:</label><br>
                 <input type="password" id="password" name="password"><br><br>
                 <input type="submit" value="Save Changes" name="submit">
+                <input type="button" value="Revert changes" onclick="window.location.href='./editProfile.php'">
             </form>
         </div>
     </div>
