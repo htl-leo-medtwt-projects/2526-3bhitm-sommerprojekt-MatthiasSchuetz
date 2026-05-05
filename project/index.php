@@ -21,7 +21,7 @@
         <div><a href="./forums.php">Forums</a></div>
         <?php
             if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
-                echo '<div><a style="color: black;" href="./server/login.php">Logout</a></div>';
+                echo '<div><a style="color: black;" href="./pages/login.php">Logout</a></div>';
                 if (isset($_SESSION['user']['profilePicture'])) {
                     $profilePicture = $_SESSION['user']['profilePicture'];
                 } else {

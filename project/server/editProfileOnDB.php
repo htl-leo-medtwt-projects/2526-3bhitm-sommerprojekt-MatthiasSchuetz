@@ -84,9 +84,10 @@
 
     if (isset($_POST["password"]) && !empty($_POST["password"])) {
         $password = $_POST["password"];
-        $insertStatement = "UPDATE user SET password = '$password' WHERE id = '".$_SESSION['user']['id']."'";
+        $_passwordHash = password_hash($password, PASSWORD_BCRYPT);
+        $insertStatement = "UPDATE user SET password = '$_passwordHash' WHERE id = '".$_SESSION['user']['id']."'";
         if ($rs = $conn->query($insertStatement)) {
-            $_SESSION['user']['password'] = $password;
+            $_SESSION['user']['password'] = $_passwordHash;
         } else {
             echo "<br>No insertion into database";
         }
