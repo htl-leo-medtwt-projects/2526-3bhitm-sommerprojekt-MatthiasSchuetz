@@ -7,7 +7,7 @@
         exit;
     }
 
-    if (isset($_FILES["profilePicture"])) {
+    if (isset($_FILES["profilePicture"]) && $_FILES["profilePicture"]["error"] == 0) {
         $target_dir = "./media/profilePictures/";
         $target_file = $target_dir . basename($_FILES["profilePicture"]["name"]);
         $uploadOk = 1;
@@ -69,13 +69,27 @@
             }
         }
     }
+    
 
-    if (isset($_POST["email"])) {
+    if (isset($_POST["email"]) && !empty($_POST["email"])) {
+        $email = $_POST["email"];
+        $insertStatement = "UPDATE user SET email = '$email' WHERE id = '".$_SESSION['user']['id']."'";
 
+        if ($rs = $conn->query($insertStatement)) {
+            $_SESSION['user']['email'] = $email;
+        } else {
+            echo "<br>No insertion into database";
+        }
     }
 
-    if (isset($_POST["password"])) {
-
+    if (isset($_POST["password"]) && !empty($_POST["password"])) {
+        $password = $_POST["password"];
+        $insertStatement = "UPDATE user SET password = '$password' WHERE id = '".$_SESSION['user']['id']."'";
+        if ($rs = $conn->query($insertStatement)) {
+            $_SESSION['user']['password'] = $password;
+        } else {
+            echo "<br>No insertion into database";
+        }
     }
 
     $conn->close();

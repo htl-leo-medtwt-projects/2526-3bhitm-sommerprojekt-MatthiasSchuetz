@@ -28,11 +28,11 @@ if(!empty($_POST['submit'])) {
             $_SESSION['login'] = 1;
             $_SESSION['user'] = $user;
         } else {
-            include '../pages/login.html';
+            include './login.html';
             echo "<div id=\"errorMessage\">Wrong password.<br></div>";
         }
     } else {
-        include '../pages/login.html';
+        include './login.html';
         echo "<div id=\"errorMessage\">Username not found.<br></div>";
     }
 }
