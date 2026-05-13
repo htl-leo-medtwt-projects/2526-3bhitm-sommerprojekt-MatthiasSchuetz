@@ -53,11 +53,24 @@
                 <input type="email" id="email" name="email" value="<?php echo $_SESSION['user']['email']; ?>"><br><br>
                 <label for="password">Password:</label><br>
                 <input type="password" id="password" name="password"><br><br>
+                <label for="previousPassword">Previous Password (required to change password):</label><br>
+                <input type="password" id="previousPassword" name="previousPassword"><br><br>
                 <input type="submit" value="Save Changes" name="submit">
                 <input type="button" value="Revert changes" onclick="window.location.href='./editProfile.php'">
             </form>
         </div>
     </div>
+
+    <?php
+        if (isset($_SESSION['error']) && !empty($_SESSION['error'])) {
+            echo '<div id="errorBox">';
+            foreach ($_SESSION['error'] as $error) {
+                echo '<p>' . $error . '</p>';
+            }
+            echo '</div>';
+            unset($_SESSION['error']);
+        }
+    ?>
 
     <div id="footer">
         <p>Copyright © 2024 MCBuildHelper. All rights reserved.</p>

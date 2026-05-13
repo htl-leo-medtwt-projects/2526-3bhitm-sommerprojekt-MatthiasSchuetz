@@ -7,6 +7,9 @@
         exit;
     }
 
+    $_SESSION['error'] = [];
+    $error = [];
+
     if (isset($_POST["username"]) && !empty($_POST["username"])) {
         $username = $_POST["username"];
         $insertStatement = "UPDATE user SET username = '$username' WHERE id = '".$_SESSION['user']['id']."'";
@@ -14,7 +17,8 @@
         if ($rs = $conn->query($insertStatement)) {
             $_SESSION['user']['username'] = $username;
         } else {
-            echo "<br>No insertion into database";
+            array_push($error, "No insertion into database.");
+            $_SESSION['error'] = $error;
         }
     }
 
@@ -76,7 +80,8 @@
             if ($rs = $conn->query($insertStatement)) {
                 $_SESSION['user']['profilePicture'] = "./server/media/profilePictures/$rndFileName.$imageFileType";
             } else {
-                echo "<br>No insertion into database";
+                array_push($error, "No insertion into database.");
+                $_SESSION['error'] = $error;
             }
         }
     }
@@ -89,20 +94,40 @@
         if ($rs = $conn->query($insertStatement)) {
             $_SESSION['user']['email'] = $email;
         } else {
-            echo "<br>No insertion into database";
+            array_push($error, "No insertion into database.");
+            $_SESSION['error'] = $error;
         }
     }
 
     if (isset($_POST["password"]) && !empty($_POST["password"])) {
-        $password = $_POST["password"];
-        $_passwordHash = password_hash($password, PASSWORD_BCRYPT);
-        $insertStatement = "UPDATE user SET password = '$_passwordHash' WHERE id = '".$_SESSION['user']['id']."'";
-        if ($rs = $conn->query($insertStatement)) {
-            $_SESSION['user']['password'] = $_passwordHash;
+        if (isset($_POST["previousPassword"]) && !empty($_POST["previousPassword"])) {
+            $previousPassword = $_POST["previousPassword"];
+            if (!password_verify($previousPassword, $_SESSION['user']['password'])) {
+                array_push($error, "Previous password is incorrect.");
+                $_SESSION['error'] = $error;
+                Header("Location: ../editProfile.php");
+                exit;
+            } else {
+                $password = $_POST["password"];
+                $_passwordHash = password_hash($password, PASSWORD_BCRYPT);
+                $insertStatement = "UPDATE user SET password = '$_passwordHash' WHERE id = '".$_SESSION['user']['id']."'";
+                if ($rs = $conn->query($insertStatement)) {
+                    $_SESSION['user']['password'] = $_passwordHash;
+                } else {
+                    array_push($error, "No insertion into database.");
+                    $_SESSION['error'] = $error;
+                }
+            }
         } else {
-            echo "<br>No insertion into database";
+            array_push($error, "Previous password is required to change password.");
+            $_SESSION['error'] = $error;
+            Header("Location: ../editProfile.php");
+            exit;
         }
     }
+
+
+    
 
     $conn->close();
 
