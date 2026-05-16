@@ -1,5 +1,47 @@
 <?php
     session_start();
+
+    if (!isset($_GET["id"])) {
+        header("Location: ./buildHacks.php");
+        exit();
+    }
+
+    require_once './database.php';
+
+    $stmt = $conn->prepare("SELECT buildhacks.*, user.username AS creator FROM buildhacks JOIN user ON buildhacks.creator = user.id WHERE buildhacks.id = ?");
+    $stmt->bind_param("i", $_GET["id"]);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $buildhack = $result->fetch_assoc();
+
+    $stmt = $conn->prepare("SELECT * FROM buildhacks_steps WHERE buildhackId = ? ORDER BY spotInHack ASC");
+    $stmt->bind_param("i", $_GET["id"]);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $steps = $result->fetch_all(MYSQLI_ASSOC);
+
+    $conn->close();
+
+    function showBuildHackDetails() {
+        global $buildhack, $steps;
+        $tempstring = '';
+        $tempstring .= '<h2>' . $buildhack["name"] . ' | Created by ' . $buildhack["creator"] . '</h2>';
+        $tempstring .= '<img src="' . $buildhack["displayImgPath"] . '" alt="' . $buildhack["name"] . '">';
+        $tempstring .= '<p>' . $buildhack["description"] . '</p>';
+        $tempstring .= '<div class="buildhacksteps">';
+        foreach ($steps as $step) {
+            $tempstring .= '<div class="buildhackstep">';
+            $tempstring .= '<h4>Step ' . $step['spotInHack'] . '</h4>';
+            $tempstring .= '<img src="' . $step['path'] . '" alt="Step Image">';
+            $tempstring .= '<p>' . $step['description'] . '</p>';
+            if (!empty($step['imgPath'])) {
+                $tempstring .= '<img src="' . $step['imgPath'] . '" alt="Step Image">';
+            }
+            $tempstring .= '</div>';
+        }
+        $tempstring .= '</div>';
+        echo $tempstring;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +52,6 @@
     <title>MCBuildHelper</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-    <script src="./buildHacksScript.js" defer></script>
 </head>
 <body>
     <div id="header">
@@ -45,7 +86,9 @@
         <div id="welcome">
             <p>Welcome to the Build Hacks page!</p>
         </div>
-        <div id="buildhacks"></div>
+        <div id="buildhacksdetails">
+            <?php showBuildHackDetails(); ?>
+        </div>
     </div>
 
     <div id="footer">

@@ -23,6 +23,8 @@ function loadBlockPalettesFromDB() {
 }
 
 async function generateBlockPalettes() {
+    document.getElementById("palettes").innerHTML = "<p>Loading...</p>";
+
     await loadBlocksFromDB();
     await loadBlockPalettesFromDB();
 
