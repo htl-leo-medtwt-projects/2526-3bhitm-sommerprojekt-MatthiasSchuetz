@@ -37,3 +37,30 @@ async function showBuildHacks() {
 }
 
 showBuildHacks();
+
+
+function openCloseBuildhackAdd() {
+    let addHackBox = document.getElementById("addHack");
+    if (addHackBox.innerHTML == "") {
+        addHackBox.innerHTML = `<div id="addHackForm">
+            <h2>Add Buildhack</h2>
+            <input type="text" id="buildHackName" placeholder="Name">
+            <textarea id="buildHackDescription" placeholder="Description"></textarea>
+            <input type="text" id="buildHackDisplayImgPath" placeholder="Display Image Path">
+            <button onclick="addStep()">Add Step</button>
+            <div id="steps"></div>
+            <button onclick="addBuildHack()">Add</button>
+        </div>`;
+    } else {
+        addHackBox.innerHTML = "";
+    }
+}
+
+function addStep() {
+    let stepsBox = document.getElementById("steps");
+    let stepCount = stepsBox.children.length;
+
+    stepsBox.innerHTML += `<div class="step">
+        <input class="" type="text" placeholder="Step ${stepCount + 1}">
+    </div>`;
+}

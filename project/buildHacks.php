@@ -10,7 +10,7 @@
     <title>MCBuildHelper</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-    <script src="./buildHacksScript.js" defer></script>
+    <script src="buildHacksScript.js" defer></script>
 </head>
 <body>
     <div id="header">
@@ -45,6 +45,8 @@
         <div id="welcome">
             <p>Welcome to the Build Hacks page!</p>
         </div>
+        <div id="addHackButton" onclick="openCloseBuildhackAdd()">Add Buildhack</div>
+        <div id="addHack"></div>
         <div id="buildhacks"></div>
     </div>
 
