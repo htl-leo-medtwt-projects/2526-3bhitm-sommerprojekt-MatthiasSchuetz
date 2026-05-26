@@ -134,60 +134,43 @@ function removeStep(id) {
 }
 
 function addBuildHack() {
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.action = "./server/addBuildhack.php";
-    form.enctype = "multipart/form-data";
-
-    // Textfelder
-    const fields = {
-        name:        document.getElementById("buildHackName").value,
-        description: document.getElementById("buildHackDescription").value,
-    };
-    const submitInput = document.createElement("input");
-    submitInput.type  = "hidden";
-    submitInput.name  = "submit";
-    submitInput.value = "1";
-    form.appendChild(submitInput);
-
-    for (const [key, value] of Object.entries(fields)) {
-        const input = document.createElement("input");
-        input.type = "hidden"; input.name = key; input.value = value;
-        form.appendChild(input);
+    const displayFileInput = document.getElementById("buildHackDisplayImgPath");
+    if (displayFileInput.files[0] && displayFileInput.files[0].size > 2 * 1024 * 1024) {
+        alert("Display image is too large (max 2MB).");
+        return;
     }
 
-    document.body.appendChild(form);
+    const formData = new FormData();
+
+    formData.append("submit", "1");
+    formData.append("name", document.getElementById("buildHackName").value);
+    formData.append("description", document.getElementById("buildHackDescription").value);
 
     // Display Image
-    const displayFileInput = document.getElementById("buildHackDisplayImgPath");
     if (displayFileInput.files[0]) {
-        displayFileInput.name = "displayImage";
-        form.appendChild(displayFileInput);
+        formData.append("buildHackDisplayImgPath", displayFileInput.files[0]);
     }
 
     // Steps
     const steps = document.querySelectorAll(".step");
     steps.forEach((step, index) => {
         const textarea = step.querySelector("textarea");
-        const descInput = document.createElement("input");
-        descInput.type = "hidden";
-        descInput.name = "stepDescription_" + index;
-        descInput.value = textarea ? textarea.value : "";
-        form.appendChild(descInput);
+        formData.append("stepDescription_" + index, textarea ? textarea.value : "");
 
-        // verstecktes file input aus der drop-zone holen
         const dz = step.querySelector(".drop-zone");
         if (dz._file) {
-            // Bild als DataTransfer-Trick anhängen
-            const dt = new DataTransfer();
-            dt.items.add(dz._file);
-            const fileInput = document.createElement("input");
-            fileInput.type = "file";
-            fileInput.name = "stepImage_" + index;
-            fileInput.files = dt.files; // nur in modernen Browsern möglich
-            form.appendChild(fileInput);
+            formData.append("stepImage_" + index, dz._file);
         }
     });
 
-    HTMLFormElement.prototype.submit.call(form);
+    fetch("./server/addBuildhack.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log(result);
+        window.location.href = "./buildHacks.php"; // oder wohin du weiterleiten willst
+    })
+    .catch(err => console.error("Upload fehler:", err));
 }

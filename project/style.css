@@ -687,6 +687,7 @@ Add Build Hack
     border-radius: 10px;
     padding: 3%;
     width: 30vw;
+    max-height: 80vh;
     z-index: 100;
     scrollbar-width: thin;
     overflow-y: scroll;

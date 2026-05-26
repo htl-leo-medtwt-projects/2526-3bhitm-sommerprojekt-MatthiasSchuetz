@@ -1,5 +1,6 @@
 <?php
 session_start();
+file_put_contents("debug.txt", print_r($_FILES, true) . "\n" . print_r($_POST, true));
 require_once "../database.php";
 
 if (!isset($_POST["submit"])) {
@@ -28,13 +29,13 @@ $description = $conn->real_escape_string($_POST["description"]);
 $displayImgPath = "";
 
 // ── Display Image hochladen ───────────────────────────────────
-if (isset($_FILES["displayImage"]) && $_FILES["displayImage"]["error"] == 0) {
+if (isset($_FILES["buildHackDisplayImgPath"]) && $_FILES["buildHackDisplayImgPath"]["error"] == 0) {
     $target_dir = "./media/buildhacks/";
-    $imageFileType = pathinfo($_FILES["displayImage"]["name"], PATHINFO_EXTENSION);
+    $imageFileType = pathinfo($_FILES["buildHackDisplayImgPath"]["name"], PATHINFO_EXTENSION);
     $rndFileName = uniqid();
     $target_file = $target_dir . $rndFileName . '.' . $imageFileType;
 
-    $check = getimagesize($_FILES["displayImage"]["tmp_name"]);
+    $check = getimagesize($_FILES["buildHackDisplayImgPath"]["tmp_name"]);
     if ($check === false) {
         array_push($error, "Display image is not a valid image.");
         $_SESSION['error'] = $error;
@@ -49,15 +50,15 @@ if (isset($_FILES["displayImage"]) && $_FILES["displayImage"]["error"] == 0) {
         exit;
     }
 
-    if ($_FILES["displayImage"]["size"] > 5000000) {
+    if ($_FILES["buildHackDisplayImgPath"]["size"] > 5000000) {
         array_push($error, "Display image is too large (max 5MB).");
         $_SESSION['error'] = $error;
         header("Location: ../addBuildhack.php");
         exit;
     }
-
-    if (move_uploaded_file($_FILES["displayImage"]["tmp_name"], $target_file)) {
-        $displayImgPath = "./server/media/buildhacks/$rndFileName.$imageFileType";
+    
+    if (move_uploaded_file($_FILES["buildHackDisplayImgPath"]["tmp_name"], $target_file)) {
+        $displayImgPath = "./server/media/buildhacks/" . $rndFileName . '.' . $imageFileType;
     } else {
         array_push($error, "Display image upload failed.");
         $_SESSION['error'] = $error;
@@ -69,7 +70,6 @@ if (isset($_FILES["displayImage"]) && $_FILES["displayImage"]["error"] == 0) {
 // ── Buildhack in DB einfügen ──────────────────────────────────
 $insertHack = "INSERT INTO buildhacks (creator, name, description, displayImgPath) 
                VALUES ('" . $_SESSION['user']['id'] . "', '$name', '$description', '$displayImgPath')";
-
 if (!$conn->query($insertHack)) {
     array_push($error, "Could not save buildhack to database.");
     $_SESSION['error'] = $error;

@@ -1,0 +1,53 @@
+Array
+(
+    [buildHackDisplayImgPath] => Array
+        (
+            [name] => 2026-05-16_12.06.47 (1).png
+            [full_path] => 2026-05-16_12.06.47 (1).png
+            [type] => image/png
+            [tmp_name] => /tmp/phpP0MCGD
+            [error] => 0
+            [size] => 447103
+        )
+
+    [stepImage_0] => Array
+        (
+            [name] => 2026-05-16_12.17.54.png
+            [full_path] => 2026-05-16_12.17.54.png
+            [type] => image/png
+            [tmp_name] => /tmp/phpwEK630
+            [error] => 0
+            [size] => 1034703
+        )
+
+    [stepImage_1] => Array
+        (
+            [name] => 2026-05-16_12.18.21.png
+            [full_path] => 2026-05-16_12.18.21.png
+            [type] => image/png
+            [tmp_name] => /tmp/phpuXBQg7
+            [error] => 0
+            [size] => 1064280
+        )
+
+    [stepImage_2] => Array
+        (
+            [name] => 2026-05-16_12.18.37.png
+            [full_path] => 2026-05-16_12.18.37.png
+            [type] => image/png
+            [tmp_name] => /tmp/php7SW2tg
+            [error] => 0
+            [size] => 1069904
+        )
+
+)
+
+Array
+(
+    [submit] => 1
+    [name] => wheelbarrow
+    [description] => A cool wheelbarrow for your farm!
+    [stepDescription_0] => Place a composter.
+    [stepDescription_1] => Place a grindstone facing the composter.
+    [stepDescription_2] => Place a fence gate of your choice facing the opposite side of the composter.
+)
