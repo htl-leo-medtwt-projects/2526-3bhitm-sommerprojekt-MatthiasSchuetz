@@ -704,7 +704,7 @@ Add Build Hack
     border-radius: 5px;
     font-family: text;
     background: var(--baseBackgroundGradient);
-    color: black;
+    color: white;
     border: solid 2px black;
     padding: 1%;
     margin: 1%;
@@ -736,6 +736,8 @@ Add Build Hack
     display: grid;
     grid-template-columns: 100%;
     grid-gap: 10px;
+    color: white;
+    font-family: text;
 }
 
 .drop-zone {
@@ -752,15 +754,39 @@ Add Build Hack
     border-color: #4285f4;
 }
 .step {
-    background: #f9f9f9;
-    border: 1px solid #e0e0e0;
+    background: var(--baseBackgroundGradient);
+    border: 2px solid black;
     border-radius: 10px;
     padding: 1rem;
     margin-bottom: 12px;
+    font-family: text;
+    color: white;
 }
 .step textarea {
-    width: 100%;
+    width: 100%;    
     box-sizing: border-box;
     min-height: 60px;
     margin-top: 8px;
+    background: var(--baseBackgroundGradient);
+    border: solid 2px black;
+    border-radius: 5px; 
+    font-family: text;
+    color: white;
+}
+
+.remove-step {
+    background: var(--baseGreen);
+    border: solid 2px black;
+    border-radius: 10px;
+    color: white;
+    font-family: text;
+    cursor: pointer;
+    padding: 6px 10px;
+    transition: 0.2s;
+    margin-bottom: 10px;
+}
+
+.remove-step:hover {
+    scale: 1.1;
+    color: black;
 }

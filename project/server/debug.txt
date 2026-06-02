@@ -2,40 +2,30 @@ Array
 (
     [buildHackDisplayImgPath] => Array
         (
-            [name] => 2026-05-16_12.06.47 (1).png
-            [full_path] => 2026-05-16_12.06.47 (1).png
+            [name] => 6a15ab56d6730.png
+            [full_path] => 6a15ab56d6730.png
             [type] => image/png
-            [tmp_name] => /tmp/phpP0MCGD
+            [tmp_name] => /tmp/phpj8nQ0R
             [error] => 0
             [size] => 447103
         )
 
     [stepImage_0] => Array
         (
-            [name] => 2026-05-16_12.17.54.png
-            [full_path] => 2026-05-16_12.17.54.png
+            [name] => 6a15ab56da47d.png
+            [full_path] => 6a15ab56da47d.png
             [type] => image/png
-            [tmp_name] => /tmp/phpwEK630
+            [tmp_name] => /tmp/phpQmQTbe
             [error] => 0
             [size] => 1034703
         )
 
     [stepImage_1] => Array
         (
-            [name] => 2026-05-16_12.18.21.png
-            [full_path] => 2026-05-16_12.18.21.png
+            [name] => 6a15ab56e2efb.png
+            [full_path] => 6a15ab56e2efb.png
             [type] => image/png
-            [tmp_name] => /tmp/phpuXBQg7
-            [error] => 0
-            [size] => 1064280
-        )
-
-    [stepImage_2] => Array
-        (
-            [name] => 2026-05-16_12.18.37.png
-            [full_path] => 2026-05-16_12.18.37.png
-            [type] => image/png
-            [tmp_name] => /tmp/php7SW2tg
+            [tmp_name] => /tmp/phpBd5wHi
             [error] => 0
             [size] => 1069904
         )
@@ -45,9 +35,8 @@ Array
 Array
 (
     [submit] => 1
-    [name] => wheelbarrow
-    [description] => A cool wheelbarrow for your farm!
-    [stepDescription_0] => Place a composter.
-    [stepDescription_1] => Place a grindstone facing the composter.
-    [stepDescription_2] => Place a fence gate of your choice facing the opposite side of the composter.
+    [name] => Test
+    [description] => So Test
+    [stepDescription_0] => Testigung1
+    [stepDescription_1] => Testigung3
 )

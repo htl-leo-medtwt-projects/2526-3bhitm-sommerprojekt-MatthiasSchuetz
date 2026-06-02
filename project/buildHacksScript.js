@@ -42,6 +42,11 @@ showBuildHacks();
 let stepCount = 0;
 
 function openCloseBuildhackAdd() {
+    if (!username) {
+        alert("You need to be logged in to add a build hack!");
+        return;
+    }
+
     let addHackBox = document.getElementById("addHack");
     if (addHackBox.innerHTML === "") {
         addHackBox.innerHTML = `<div id="addHackForm">
@@ -72,7 +77,7 @@ function addStep() {
     div.innerHTML = `
         <div class="step-header">
             <span>Step ${stepCount}</span>
-            <button onclick="removeStep('${stepId}')">✕</button>
+            <button class="remove-step" onclick="removeStep('${stepId}')">X</button>
         </div>
         <div class="drop-zone" id="dz-${stepId}">
             <span>Bild hier hineinziehen oder klicken</span>
