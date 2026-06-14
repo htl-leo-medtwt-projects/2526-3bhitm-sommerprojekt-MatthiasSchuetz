@@ -18,6 +18,10 @@ if (!isset($_POST["description"]) || empty($_POST["description"])) {
     array_push($error, "Description is required.");
 }
 
+if (!isset($_FILES["buildHackDisplayImgPath"]) || $_FILES["buildHackDisplayImgPath"]["error"] != 0) {
+    array_push($error, "Display image is required.");
+}
+
 if (!empty($error)) {
     $_SESSION['error'] = $error;
     header("Location: ../addBuildhack.php");

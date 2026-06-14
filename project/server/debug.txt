@@ -1,42 +1,10 @@
 Array
 (
-    [buildHackDisplayImgPath] => Array
-        (
-            [name] => 6a15ab56d6730.png
-            [full_path] => 6a15ab56d6730.png
-            [type] => image/png
-            [tmp_name] => /tmp/phpj8nQ0R
-            [error] => 0
-            [size] => 447103
-        )
-
-    [stepImage_0] => Array
-        (
-            [name] => 6a15ab56da47d.png
-            [full_path] => 6a15ab56da47d.png
-            [type] => image/png
-            [tmp_name] => /tmp/phpQmQTbe
-            [error] => 0
-            [size] => 1034703
-        )
-
-    [stepImage_1] => Array
-        (
-            [name] => 6a15ab56e2efb.png
-            [full_path] => 6a15ab56e2efb.png
-            [type] => image/png
-            [tmp_name] => /tmp/phpBd5wHi
-            [error] => 0
-            [size] => 1069904
-        )
-
 )
 
 Array
 (
     [submit] => 1
-    [name] => Test
-    [description] => So Test
-    [stepDescription_0] => Testigung1
-    [stepDescription_1] => Testigung3
+    [name] => 
+    [description] => 
 )

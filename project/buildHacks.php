@@ -1,5 +1,10 @@
 <?php
     session_start();
+
+    if (isset($_SESSION['error']) && !empty($_SESSION['error'])) {
+        echo '<script>alert("' . implode("\\n", $_SESSION['error']) . '");</script>';
+        unset($_SESSION['error']);
+    }
 ?>
 
 <!DOCTYPE html>
